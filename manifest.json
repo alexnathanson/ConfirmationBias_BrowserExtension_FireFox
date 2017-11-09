@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "Confirmation Bias",
+  "version": "0.1.0",
+  "browser_action": {
+    "default_icon": {
+      "32": "icons/confirmationicon-32.png"
+    },
+    "default_title": "Confirmation Bias",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["webNavigation", "storage", "notifications", "tabs"],
+  "background": {
+    "scripts": [ "background.js" ]
+  },
+  "icons": {
+    "32": "icons/confirmationicon-32.png"
+  },
+
+  "default_locale": "en",
+
+  "applications": {
+    "gecko": {
+      "strict_min_version": "50.0"
+    }
+  },
+
+  "web_accessible_resources": [
+    "images/slider.jpg"
+  ]
+}
