@@ -53,39 +53,55 @@ getSet.then(intensity => {
   var output = document.getElementById("value");
   output.innerHTML = getIntense;
 })
+*/
 
-
-// settings
+// settings variables
 var checkEl = document.getElementById("settings");
 var thisEl = checkEl.getElementsByTagName("input")
 
-thisEl[0].onclick = function(){
-  let onOff = {onOff: this.value}
-  browser.storage.local.set({onOff});
-  if (thisEl[0].checked == true){
-    console.log("Wow~ On");
-  } else {
-    console.log("Wow~ Off");
+
+//set settings
+var getChecked = browser.storage.local.get("onOff");
+//console.log(getChecked);
+ thisEl[0].checked = getChecked;
+ thisEl[1].value=50;
+
+//on off toggle
+thisEl[0].onclick = storage(check);
+  //console.log(thisEl[0].checked);
+  
+
+//slider bar
+thisEl[1].oninput = storage(slider);
+    //console.log(thisEl[1].value);
+  
+
+
+function storage(changed){
+
+  if (changed = check){
+    let checkThis = {
+        name: "onOff",
+        state: //was this: new Date(2006, 7, 12) 
+      }
   }
-}
-thisEl[1].oninput = function(){
-    //console.log(this.value);
-    var output = document.getElementById("value");
-    let intensity = {intensity: this.value}
-    //store settings
-    browser.storage.local.set({intensity});
+  if (changed = slider){
+    let slideThis = {
+        name: "slider",
+        state: //was this: new Date(2006, 7, 12) 
+      }
+
+
   }
 
-var getSet = browser.storage.local.get("intensity");
-getSet.then(onGot);
-function onGot(item) {
-  if(item.intensity.newValue.intensity){
-  var slider = item.intensity.newValue.intensity;
-  var output = document.getElementById("value");
-  output.innerHTML = slider;
-}}
-*/
+    // store the objects
+    let setting = browser.storage.local.set({checkThis});
 
+
+    let settings = {};
+    settings [onOff[0]] = thisEl[0].checked;
+    browser.storage.local.set(onOff);
+  }
 /*
 //Choose and retrieve images
 var imageNum = (Math.random() * 4) + 1;
