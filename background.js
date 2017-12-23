@@ -93,8 +93,6 @@ gettingStoredStats.then(results => {
         // Persist the updated stats.
         browser.storage.local.set(results);
         browser.storage.local.set(opposing);
-        console.log(opposing);
-        console.log(results);
 
       };
     }

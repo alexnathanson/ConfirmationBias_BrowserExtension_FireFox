@@ -69,7 +69,6 @@ getOpposingStats.then(oppStats, onError);
 //GRAPH---------------------------------------------------------------------------------------------
 
 function graphIt(faveSites){
-  console.log("graphing!");
   //canvas
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
@@ -98,7 +97,6 @@ function graphIt(faveSites){
   //green
   ctx.fillStyle = "#00ff00";
 
-console.log(faveSites.length);
   //loop through all 5 favorites
   for (c = 0; c< faveSites.length; c++){
 
@@ -106,7 +104,6 @@ console.log(faveSites.length);
     //console.log(checkSite);
     var checkString = checkSite.toString();
     
-    console.log(checkString);
 
     //get X and Y of message
     for (i = 0; i< mediaSources.length; i++){
@@ -137,7 +134,6 @@ function navStats(nav){
     //console.log("new nav");
   }
   stats = nav.hostNavigationStats;
-  console.log(stats);
 
   const sortedHostnames = Object.keys(stats).sort((a, b) => {
     return stats[a] <= stats[b];
@@ -154,7 +150,6 @@ function oppStats(opp){
       //console.log("new opps");
     }
   opps = opp.opposingNavigationStats;
-  console.log(opps);
 
   const sortedOpps = Object.keys(opps).sort((a, b) => {
     return opps[a] <= opps[b];
@@ -178,7 +173,7 @@ function listNav(hostNavigationStats, stats){
 
     const listItem = document.createElement("li");
     const hostname = hostNavigationStats[i];
-    console.log(hostNavigationStats);
+
     listItem.textContent = `${hostname}: ${stats[hostname]} visit(s)`;
     listEl.appendChild(listItem);
     }
@@ -188,8 +183,6 @@ function listOpp(opposingHostnames){
 // hated sites
   let HlistEl = document.getElementById("hated");
     HlistEl.removeChild(HlistEl.firstChild);
-
-console.log(opposingHostnames.length);
 
     for (let i=0; i < opposingHostnames.length; i++) {
       if (i >= MAX_ITEMS) {
