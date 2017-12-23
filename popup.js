@@ -1,153 +1,207 @@
-// Get the saved stats and render the data in the popup window.
-var gettingStoredStats = browser.storage.local.get("hostNavigationStats");
-gettingStoredStats.then(results => {
-  if (!results.hostNavigationStats) {
-    return;
-  }
-
-  const {hostNavigationStats} = results;
-  const sortedHostnames = Object.keys(hostNavigationStats).sort((a, b) => {
-    return hostNavigationStats[a] <= hostNavigationStats[b];
-  });
-
-  if (sortedHostnames.length === 0) {
-    return;
-  }
-
-  let listEl = document.querySelector("ul");
-  while(listEl.firstChild)
-    listEl.removeChild(listEl.firstChild);
-
-  const MAX_ITEMS = 5;
-  for (let i=0; i < sortedHostnames.length; i++) {
-    if (i >= MAX_ITEMS) {
-      break;
-    }
-
-    const listItem = document.createElement("li");
-    const hostname = sortedHostnames[i];
-    listItem.textContent = `${hostname}: ${hostNavigationStats[hostname]} visit(s)`;
-    listEl.appendChild(listItem);
-  }
-});
-
-/*
-//Get the saved settings
-var getSet = browser.storage.local.get("intensity");
-getSet.then(intensity => {
-  if (!intensity.intensity) {
-    return;
-  }
-  var getIntense = browser.storage.local.get("intensity");
-  var getOff = browser.storage.local.get("onOff");
-  //set elements
-  if (getOff = 1 ){
-    thisEl[0].checked = true;
-  } else {
-    thisEl[0].checked = false;
-  }
-  
-  thisEl[1].value = getIntense;
-
-  //set value number
-  var output = document.getElementById("value");
-  output.innerHTML = getIntense;
-})
-*/
+//USER SETTINGS-----------------------------------------------------------------------------
 
 // settings variables
 var checkEl = document.getElementById("settings");
 var thisEl = checkEl.getElementsByTagName("input")
 
-
-//set settings
-var getChecked = browser.storage.local.get("onOff");
-//console.log(getChecked);
- thisEl[0].checked = getChecked;
- thisEl[1].value=50;
-
-//on off toggle
-thisEl[0].onclick = storage(check);
-  //console.log(thisEl[0].checked);
-  
-
-//slider bar
-thisEl[1].oninput = storage(slider);
-    //console.log(thisEl[1].value);
-  
-
-
-function storage(changed){
-
-  if (changed = check){
-    let checkThis = {
-        name: "onOff",
-        state: //was this: new Date(2006, 7, 12) 
-      }
-  }
-  if (changed = slider){
-    let slideThis = {
-        name: "slider",
-        state: //was this: new Date(2006, 7, 12) 
-      }
-
-
-  }
-
-    // store the objects
-    let setting = browser.storage.local.set({checkThis});
-
-
-    let settings = {};
-    settings [onOff[0]] = thisEl[0].checked;
-    browser.storage.local.set(onOff);
-  }
 /*
-//Choose and retrieve images
-var imageNum = (Math.random() * 4) + 1;
-imageNum = Math.trunc(imageNum);
+Default settings. Initialize storage to these values.
+*/
 
-//console.log("the random number is:" + imageNum);
+var userSettings = {
+  //check: 1,
+  //slide: 27
+  }
 
-var imageSel = "http://themonkeycage.org/wp-content/uploads/2012/04/Post3Figure1.png";
-
-switch(imageNum){
-  case 1:
-    imageSel = "http://themonkeycage.org/wp-content/uploads/2012/04/Post3Figure1.png" ;
-    break;
-  case 2:
-    imageSel = "http://alexnathanson.com/images/sewage1.jpg";
-    break;
-  case 3:
-    imageSel = "http://alexnathanson.com/images/sewage2.jpg";
-    break;
-  case 4:
-    imageSel = "http://alexnathanson.com/images/sewage3.jpg";
-    break;
+/*
+On startup, check whether we have stored settings.
+If we don't, then store the default settings.
+*/
+function checkStoredSettings(storedSettings) {
+  //copied this into background script
+  if (!storedSettings.userSettings) {
+    userSettings = {
+      check: 1,
+      slide: 27
+      }
+    browser.storage.local.set({userSettings});
+  } else {
+    //console.log(storedSettings.userSettings);
+    userSettings = storedSettings.userSettings;
+    }
+  
+  thisEl[0].checked = userSettings.check;
+  thisEl[1].value = userSettings.slide;
 }
 
-document.getElementById("img").src= imageSel;
-*/
+const gettingStoredSettings = browser.storage.local.get();
+gettingStoredSettings.then(checkStoredSettings, onError);
+
+//console.log(userSettings);
+
+//on off toggle
+thisEl[0].onclick = function(){
+  storage();
+}
+//slider bar
+thisEl[1].oninput = function(){
+  storage();
+}
+
+function storage(){
+  //console.log("storing");
+  userSettings = {
+      check: thisEl[0].checked,
+      slide: thisEl[1].value
+    }
+  //console.log(userSettings);
+
+  // store the objects
+  browser.storage.local.set({userSettings});
+  }
+
+//GET WEBSITE STATS--------------------------------------------------------------------------
+
+function opposable(){
+  opposing = {
+      opposingNavigationStats: {}
+  };
+  //const {opposingNavigationStats} = opposing;
+}
+
+// Get the saved stats and render the data in the popup window.
+var gettingStoredStats = browser.storage.local.get("hostNavigationStats");
+var getOpposingStats = browser.storage.local.get("opposingNavigationStats");
+console.log(gettingStoredStats.results);
+console.log(opposingNavigationStats.opposing);
+
+gettingStoredStats.then(results => {
+  if (!results.hostNavigationStats) {
+    return;
+  }
+console.log("test");
+  //opposable();
+
+  //const {opposingNavigationStats} = opposing;
+
+  //getOpposingStats.then(opposing =>{
+    //opposing = opposing.getOpposingStats;
+
+/*
+    if (!opposing.getOpposingStats) {
+        opposing = {}
+        }*/
+ 
+
+  console.log(results);
+  console.log(opposing);
+  
+
+  const {hostNavigationStats} = results;
+
+  const sortedHostnames = Object.keys(hostNavigationStats).sort((a, b) => {
+    return hostNavigationStats[a] <= hostNavigationStats[b];
+  });
+
+  faveSites = sortedHostnames;
+  var opposingHostnames = opposingNavigationStats;
+
+  if (sortedHostnames.length === 0) {
+    return;
+  }
+
+  listIt(sortedHostnames, hostNavigationStats, opposingHostnames);
+
+//GRAPH---------------------------------------------------------------------------------------------
 
 //canvas
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
-var canvasImage = new Image;
-canvasImage.src = "images/ConfirmationBias_mediavectorgraph.jpg";
-ctx.drawImage(canvasImage, 0, 0);
+//var canvasImage = new Image;
+//canvasImage.src = "images/ConfirmationBias_mediavectorgraph.jpg";
 
-ctx.fillStyle = "#ffffff";
+//ctx.drawImage(canvasImage, 0, 0);
+
+  //white
+  ctx.fillStyle = "#ffffff";
 
   var mediaSources = mediaList();
 
-for (i = 0; i< mediaSources.length; i++){
-  var X2 = mediaSources[i][1];
-  var Y2 = mediaSources[i][2];
+  //draw all points
+  for (i = 0; i< mediaSources.length; i++){
+    var X2 = mediaSources[i][1];
+    var Y2 = mediaSources[i][2];
 
-  ctx.beginPath();
-  ctx.arc((((X2+1)*170)+30),(((1-Y2)*340)+30),2,0,2*Math.PI);
-  ctx.fill();
+    ctx.beginPath();
+    ctx.arc((((X2+1)*170)+30),(((1-Y2)*340)+30),2,0,2*Math.PI);
+    ctx.fill();
+  }
+
+  //yellow
+  ctx.fillStyle = "#ffff00";
+
+  //draw favorites
+  
+  //loop through all 5 favorites
+  for (c = 0; c< faveSites.length; c++){
+
+    var checkSite = faveSites[c];
+    //console.log(checkSite);
+    var checkString = checkSite.toString();
+
+    //get X and Y of message
+    for (i = 0; i< mediaSources.length; i++){
+      let mediaString = mediaSources[i][0].toString();
+
+      if (checkString.includes(mediaString) == true){
+        //console.log("True!");
+        X1 = mediaSources[i][1];
+        Y1 = mediaSources[i][2];
+
+        var size = 7 - c;
+        ctx.beginPath();
+        ctx.arc((((X1+1)*170)+30),(((1-Y1)*340)+30),size,0,2*Math.PI);
+        ctx.fill();
+
+        break;
+      };
+    };
+  };
+});
+
+function listIt(sortedHostnames, hostNavigationStats, opposingHostnames){
+  
+  //fave sites
+  let listEl = document.getElementById("fave");
+  listEl.removeChild(listEl.firstChild);
+
+    const MAX_ITEMS = 5;
+    for (let i=0; i < sortedHostnames.length; i++) {
+      if (i >= MAX_ITEMS) {
+        break;
+      }
+
+    const listItem = document.createElement("li");
+    const hostname = sortedHostnames[i];
+    listItem.textContent = `${hostname}: ${hostNavigationStats[hostname]} visit(s)`;
+    listEl.appendChild(listItem);
+    }
+
+  // hated sites
+  let HlistEl = document.getElementById("hated");
+    HlistEl.removeChild(HlistEl.firstChild);
+
+    for (let i=0; i < opposingHostnames.length; i++) {
+      if (i >= MAX_ITEMS) {
+        break;
+      }
+
+    const HlistItem = document.createElement("li");
+    const hostname = opposingHostnames[i];
+    HlistItem.textContent = `${hostname}: ${opposingNavigationStats[hostname]} visit(s)`;
+    HlistEl.appendChild(HlistItem);
+    }
 }
 
 function mediaList(){
@@ -217,4 +271,8 @@ function mediaList(){
 
 
   return mediaSources;
+}
+
+function onError(error) {
+  console.log(`Error: ${error}`);
 }

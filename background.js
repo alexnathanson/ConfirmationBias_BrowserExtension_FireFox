@@ -1,25 +1,45 @@
-
 var globalURL;
-var oldURL;
+var oldURL = "genericwebsite";
+var slide;
+var check;
 
-//Initialize settings data
-browser.storage.local.set({
-  onOff: "1",
-  intensity: "50"
-});
+var opposing = {};
 
-/*
+//load settings - copied from popup
+
 function onGot(item) {
-  console.log(item.intensity);
+  slide = item.userSettings.slide;
+  check = item.userSettings.check;
+  //console.log("slide: " + slide);
+  //console.log("check: " + check);
 }
 
-let settings = browser.storage.local.get("intensity");
-settings.then(onGot);
-*/
+function userSettings(){
+  // load user settings
+  var getSettings = browser.storage.local.get("userSettings");
+  getSettings.then(onGot);
+  }
 
 // Load existent stats with the storage API.
 var gettingStoredStats = browser.storage.local.get("hostNavigationStats");
+var opposingStoredStats = browser.storage.local.get("opposingNavigationStats");
+
+function opposable(){
+  if (!opposing.opposingNavigationStats){
+    opposing = {
+          opposingNavigationStats: {}
+        }
+      };
+
+  //const {opposingNavigationStats} = opposing;
+  
+}
+
+//opposing = opposingStoredStats.then(opposable);
+//console.log(opposable());
+
 gettingStoredStats.then(results => {
+
   // Initialize the saved stats if not yet initialized.
   if (!results.hostNavigationStats) {
     results = {
@@ -27,37 +47,59 @@ gettingStoredStats.then(results => {
     };
   }
 
+
+  opposable();
+
+  console.log(results);
+  console.log(opposing);
+
+  const {opposingNavigationStats} = opposing;
   const {hostNavigationStats} = results;
 
   // Monitor completed navigation events and update
   // stats accordingly.
   browser.webNavigation.onCompleted.addListener(evt => {
-    // Filter out any sub-frame related navigation event
-    if (evt.frameId !== 0) {
-      return;
-    }
+    userSettings();
 
-    const url = new URL(evt.url);
+    //check status
+    //settings();
+    
+    if (check == true){
 
-    //check if url is considered a news site
-    if (checkMedia(url) == 1){
-      hostNavigationStats[url.hostname] = hostNavigationStats[url.hostname] || 0;
-      hostNavigationStats[url.hostname]++;
-
-      //make notification
-      //checks to make sure it wont be redundant
-      globalURL = oppositionMedia(url);
-      var thisURL = url.toString();
-      if (thisURL.includes(oldURL) == false){
-        notify(globalURL);
-        oldURL = globalURL;
+      // Filter out any sub-frame related navigation event
+      if (evt.frameId !== 0) {
+        return;
       }
 
-      // Persist the updated stats.
-      browser.storage.local.set(results);
+      const url = new URL(evt.url);
 
-    };
+      //check if url is considered a news site
+      if (checkMedia(url) == 1){
+        hostNavigationStats[url.hostname] = hostNavigationStats[url.hostname] || 0;
+        hostNavigationStats[url.hostname]++;
+
+        //make notification
+        //checks to make sure it wont be redundant
+        globalURL = oppositionMedia(url);
+        var thisURL = url.toString();
+
+        if (thisURL.includes(oldURL) == false){
+          notify(globalURL);
+          oldURL = globalURL;
+
+          opposingNavigationStats[globalURL] = opposingNavigationStats[globalURL] || 0;
+          opposingNavigationStats[globalURL]++;
     
+        }
+
+        // Persist the updated stats.
+        browser.storage.local.set(results);
+        browser.storage.local.set(opposing);
+        console.log(opposing);
+        console.log(results);
+
+      };
+    }
   }, {
     url: [{schemes: ["http", "https"]}]});
 });
@@ -120,8 +162,11 @@ function oppositionMedia(message){
   var X1;
   var Y1;
   var distance;
-  var min = .5; //minimum media difference to be considered.
+  var min = ((slide * .8)*.01)+.2; //minimum media difference to be considered.
   var f = 0; //index for possibles
+
+//  check min scaling
+// console.log("min: " + slide + ", " + min);
 
   //get X and Y of message
   for (i = 0; i< mediaSources.length; i++){
@@ -223,3 +268,38 @@ function mediaList(){
 
   return mediaSources;
 }
+
+
+//TO TRASH->
+
+
+/*
+function settings(settings){
+  // load user settings
+  //getSettings.then(onGot);
+  //var getSettings = browser.storage.local.get("userSettings");
+  console.log(settings.slide);
+  slide = settings.slide;
+  check = settings.check;
+  }
+
+
+const gettingStoredSettings = browser.storage.local.get("userSettings");
+
+//console.log(gettingStoredSettings.slide);
+gettingStoredSettings.then(settings);
+
+
+/*
+function checkStoredSettings(storedSettings) {
+  //copied this into background script
+  if (!storedSettings.userSettings) {
+    userSettings = {
+      check: 1,
+      slide: 27
+    }
+  } else {
+    userSettings = storedSettings.userSettings;
+  }
+  return userSettings;
+}*/
