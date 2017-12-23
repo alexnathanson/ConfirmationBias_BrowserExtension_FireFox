@@ -5,16 +5,27 @@ var check;
 
 var opposing = {};
 
-//load settings - copied from popup
+//load settings
 
 function onGot(item) {
+
+//added 12/23
+  if (!item.userSettings) {
+    userSettings = {
+      check: 1,
+      slide: 27
+      }
+    browser.storage.local.set({userSettings});
+  } else {
+
   slide = item.userSettings.slide;
   check = item.userSettings.check;
+    }
   //console.log("slide: " + slide);
   //console.log("check: " + check);
 }
 
-function userSettings(){
+function settings(){
   // load user settings
   var getSettings = browser.storage.local.get("userSettings");
   getSettings.then(onGot);
@@ -24,19 +35,6 @@ function userSettings(){
 var gettingStoredStats = browser.storage.local.get("hostNavigationStats");
 var opposingStoredStats = browser.storage.local.get("opposingNavigationStats");
 
-function opposable(){
-  if (!opposing.opposingNavigationStats){
-    opposing = {
-          opposingNavigationStats: {}
-        }
-      };
-
-  //const {opposingNavigationStats} = opposing;
-  
-}
-
-//opposing = opposingStoredStats.then(opposable);
-//console.log(opposable());
 
 gettingStoredStats.then(results => {
 
@@ -47,8 +45,11 @@ gettingStoredStats.then(results => {
     };
   }
 
-
-  opposable();
+  if (!opposing.opposingNavigationStats){
+    opposing = {
+      opposingNavigationStats: {}
+    };
+  }
 
   console.log(results);
   console.log(opposing);
@@ -59,10 +60,7 @@ gettingStoredStats.then(results => {
   // Monitor completed navigation events and update
   // stats accordingly.
   browser.webNavigation.onCompleted.addListener(evt => {
-    userSettings();
-
-    //check status
-    //settings();
+    settings();
     
     if (check == true){
 
