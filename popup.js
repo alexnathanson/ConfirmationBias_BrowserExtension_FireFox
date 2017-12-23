@@ -18,7 +18,7 @@ function checkStoredSettings(storedSettings) {
   if (!storedSettings.userSettings) {
     userSettings = {
       check: 1,
-      slide: 27
+      slide: 50
       }
     browser.storage.local.set({userSettings});
   } else {

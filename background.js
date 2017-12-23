@@ -1,6 +1,6 @@
 var globalURL;
 var oldURL = "genericwebsite";
-var slide;
+var slider;
 var check;
 
 var opposing = {};
@@ -13,12 +13,12 @@ function onGot(item) {
   if (!item.userSettings) {
     userSettings = {
       check: 1,
-      slide: 27
+      slide: 50
       }
     browser.storage.local.set({userSettings});
   } else {
 
-  slide = item.userSettings.slide;
+  slider = item.userSettings.slide;
   check = item.userSettings.check;
     }
   //console.log("slide: " + slide);
@@ -38,6 +38,8 @@ var opposingStoredStats = browser.storage.local.get("opposingNavigationStats");
 
 gettingStoredStats.then(results => {
 
+  settings();
+  
   // Initialize the saved stats if not yet initialized.
   if (!results.hostNavigationStats) {
     results = {
@@ -158,11 +160,15 @@ function oppositionMedia(message){
   var X1;
   var Y1;
   var distance;
-  var min = ((slide * .8)*.01)+.2; //minimum media difference to be considered.
+  // must be scale to account for hypotenues
+  console.log(slider);
+  var min = ((.3 + (slider * .0025))* 2.236);  //minimum media difference to be considered.
+  var max = ((.5 + (slider * .005))* 2.236);
+
   var f = 0; //index for possibles
 
 //  check min scaling
-// console.log("min: " + slide + ", " + min);
+console.log("slider: " + slider + ", min: " + min + ", max: " + max);
 
   //get X and Y of message
   for (i = 0; i< mediaSources.length; i++){
@@ -182,8 +188,8 @@ function oppositionMedia(message){
     var Y2 = mediaSources[i][2];
 
     distance = Math.sqrt(Math.pow((X1 - X2), 2) + Math.pow((Y1 - Y2), 2));
-
-    if (distance >= min){
+    //console.log("distance: " + distance);
+    if (distance >= min && distance <= max){
       if (mediaSources[i][3] <= 2){ //check that it isn't a social media or extremist site
         possibles[f] = i; //add new possibility to list
         f++;
@@ -264,38 +270,3 @@ function mediaList(){
 
   return mediaSources;
 }
-
-
-//TO TRASH->
-
-
-/*
-function settings(settings){
-  // load user settings
-  //getSettings.then(onGot);
-  //var getSettings = browser.storage.local.get("userSettings");
-  console.log(settings.slide);
-  slide = settings.slide;
-  check = settings.check;
-  }
-
-
-const gettingStoredSettings = browser.storage.local.get("userSettings");
-
-//console.log(gettingStoredSettings.slide);
-gettingStoredSettings.then(settings);
-
-
-/*
-function checkStoredSettings(storedSettings) {
-  //copied this into background script
-  if (!storedSettings.userSettings) {
-    userSettings = {
-      check: 1,
-      slide: 27
-    }
-  } else {
-    userSettings = storedSettings.userSettings;
-  }
-  return userSettings;
-}*/
