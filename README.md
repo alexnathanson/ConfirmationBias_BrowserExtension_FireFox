@@ -70,3 +70,4 @@ A Firefox browser extension designed to mitigate confirmation bias in media cons
 * Allow for more user controll over the intensity of the extension. For example, a random redirection feature that a user could opt-in to that would automatically take them to a random news site, instead of what they typed in to the browser.
 *better/ more nuanced intensity control
 * remove duplication of media list
+*make dropdown websites hyperlinks
