@@ -189,9 +189,15 @@ function listOpp(opposingHostnames){
         break;
       }
 
+    var a = document.createElement("a");
     const HlistItem = document.createElement("li");
     const hostname = opposingHostnames[i];
-    HlistItem.textContent = `${hostname}`;
+    const prepend = "https://www.";
+    var linkHost = prepend.concat(hostname);
+    console.log(linkHost);
+    a.textContent = `${hostname}`;
+    a.setAttribute('href', linkHost);
+    HlistItem.appendChild(a);
     HlistEl.appendChild(HlistItem);
     }
 }

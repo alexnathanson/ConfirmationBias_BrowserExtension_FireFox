@@ -21,7 +21,7 @@ function onGot(item) {
   slider = item.userSettings.slide;
   check = item.userSettings.check;
     }
-  //console.log("slide: " + slide);
+  //console.log("slide: " + slider);
   //console.log("check: " + check);
 }
 
@@ -33,13 +33,14 @@ function settings(){
 
 // Load existent stats with the storage API.
 var gettingStoredStats = browser.storage.local.get("hostNavigationStats");
-var opposingStoredStats = browser.storage.local.get("opposingNavigationStats");
+//var opposingStoredStats = browser.storage.local.get("opposingNavigationStats");
 
+settings();
 
 gettingStoredStats.then(results => {
 
-  settings();
   
+
   // Initialize the saved stats if not yet initialized.
   if (!results.hostNavigationStats) {
     results = {
@@ -53,8 +54,7 @@ gettingStoredStats.then(results => {
     };
   }
 
-  console.log(results);
-  console.log(opposing);
+  console.log("Confirmation Bias Extension BEGIN");
 
   const {opposingNavigationStats} = opposing;
   const {hostNavigationStats} = results;
@@ -63,7 +63,7 @@ gettingStoredStats.then(results => {
   // stats accordingly.
   browser.webNavigation.onCompleted.addListener(evt => {
     settings();
-    
+
     if (check == true){
 
       // Filter out any sub-frame related navigation event
@@ -161,14 +161,14 @@ function oppositionMedia(message){
   var Y1;
   var distance;
   // must be scale to account for hypotenues
-  console.log(slider);
+  //console.log(slider);
   var min = ((.3 + (slider * .0025))* 2.236);  //minimum media difference to be considered.
   var max = ((.5 + (slider * .005))* 2.236);
 
   var f = 0; //index for possibles
 
 //  check min scaling
-console.log("slider: " + slider + ", min: " + min + ", max: " + max);
+//console.log("slider: " + slider + ", min: " + min + ", max: " + max);
 
   //get X and Y of message
   for (i = 0; i< mediaSources.length; i++){
