@@ -72,4 +72,3 @@ A Firefox browser extension designed to mitigate confirmation bias in media cons
 * Compare multiple user's behaviour to each other to measure trends and make more relevant recommendations
 * More extension behavior options for the user.
 * remove duplication of media list
-* make dropdown websites hyperlinks
