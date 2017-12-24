@@ -67,7 +67,6 @@ A Firefox browser extension designed to mitigate confirmation bias in media cons
 * Track user behaviour over time and adjust behavior accordingly
 * Make suggestions based not only on the media source, but also on the specific subject matter of an article or specific auther. 
 * Compare multiple user's behaviour to each other to measure trends and make more relevant recommendations
-* Allow for more user controll over the intensity of the extension. For example, a random redirection feature that a user could opt-in to that would automatically take them to a random news site, instead of what they typed in to the browser.
-*better/ more nuanced intensity control
+* More extension behavior options for the user.
 * remove duplication of media list
-*make dropdown websites hyperlinks
+* make dropdown websites hyperlinks
