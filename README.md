@@ -71,4 +71,5 @@ A Firefox browser extension designed to mitigate confirmation bias in media cons
 * Make suggestions based not only on the media source, but also on the specific subject matter of an article or specific auther. 
 * Compare multiple user's behaviour to each other to measure trends and make more relevant recommendations
 * More extension behavior options for the user.
-* remove duplication of media list
+* remove duplication of media list by including it as txt files.
+* Add more info in the notification.
