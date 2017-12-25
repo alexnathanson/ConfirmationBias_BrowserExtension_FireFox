@@ -85,7 +85,7 @@ gettingStoredStats.then(results => {
         var thisURL = url.toString();
 
         if (thisURL.includes(oldURL) == false){
-          notify(globalURL);
+          notify(globalURL, polX, factY);
           oldURL = globalURL;
 
           opposingNavigationStats[globalURL] = opposingNavigationStats[globalURL] || 0;
@@ -121,17 +121,34 @@ Then display a notification. The notification contains the URL,
 which we read from the message.
 */
 
-function notify(message) {
+function notify(message, polX, factY) {
   //console.log("background script received message!");
   var title = browser.i18n.getMessage("notificationTitle");
   var content = browser.i18n.getMessage("notificationContent", message);
-  var distance = "left";
-  var factualness = "less";
+  var politics;
+  var factualness;
+
+  if (polX > 0){
+    politics = "more left wing";
+  } else if (polX = 0){
+    politics = "politically similar";
+  } else {
+    politics = "more right wing";
+  }
+
+  if (factY > 0){
+    factualness = "less";
+  } else if (factY = 0){
+    factualness = "similarly";
+  } else {
+    factualness = "more";
+  }
+
   browser.notifications.create({
     "type": "basic",
     "iconUrl": browser.extension.getURL("icons/confirmationicon3b-48.png"),
     "title": title,
-    "message": `${content} \n It's more ${distance} wing and ${factualness} fact based`
+    "message": `${content} \n It's ${politics} and ${factualness} fact based`
   });
 }
 
@@ -203,8 +220,17 @@ function oppositionMedia(message){
   //randomly select one of the possible outputs
   var pickIt = Math.trunc(Math.random() * possibles.length); //check that it isn't short 1
 
+  getDistance(X1, Y1, mediaSources[possibles[pickIt]][1], mediaSources[possibles[pickIt]][2]);
   //returns a link to suggest
   return mediaSources[possibles[pickIt]][0];
+}
+
+var polX;
+var factY;
+
+function getDistance(X1, Y1, X2, Y2){
+  polX = (X1 + 1) - (X2 + 1);
+  factY = Y1 - Y2;
 }
 
 function mediaList(){
@@ -272,7 +298,7 @@ function mediaList(){
   mediaSources[50] = new Array ("thegatewaypundit.com", 1, .2, 1);
   mediaSources[51] = new Array ("scientificamerican.com", -.35, .9, 1);
   mediaSources[52] = new Array ("rollingstone.com", -.75, .5, 1);
-  mediaSources[53] = new Array ("www.palmerreport.com", -.8, 0, 1)
+  mediaSources[53] = new Array ("www.palmerreport.com", -.8, 0, 4)
 
 
   return mediaSources;
