@@ -19,7 +19,7 @@ The vector assigned to each media source is deeply subjective. The trust variati
 6) Visit one of the websites below.
 
 ## List of news site vectors currently implemented <br>
-You can see all the included media sources in the mediasources.js file
+You can see all the included media sources in the mediasources.js file.
   
 ## Future changes and additions
 * Track user behaviour over time and adjust behavior accordingly
