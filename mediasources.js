@@ -31,7 +31,7 @@ function mediaList(){
   mediaSources[19] = new Array ("bbcnews.com", 0, .9, 1);
   mediaSources[20] = new Array ("latimes.com", 0, .85, 1);
   mediaSources[21] = new Array ("pewresearch.org", 0, 1, 1); //journalism.org is another site run by pew
-  mediaSources[22] = new Array ("the-daily-show-with-trevor-noah", -.8, .4, 1); //trigger only, no redirection. (would need to link to www.dailyshow.com)
+  mediaSources[22] = new Array ("the-daily-show-with-trevor-noah", -.8, .4, 4); //trigger only, no redirection. (would need to link to www.dailyshow.com)
   mediaSources[23] = new Array ("businessinsider.com", 0, .85, 1);
   mediaSources[24] = new Array ("theeconomist.com", 0, .9, 1);
   mediaSources[25] = new Array ("buzzfeed.com", -.25, .45, 1);
@@ -62,11 +62,12 @@ function mediaList(){
   mediaSources[50] = new Array ("thegatewaypundit.com", 1, .2, 1);
   mediaSources[51] = new Array ("scientificamerican.com", -.35, .9, 1);
   mediaSources[52] = new Array ("rollingstone.com", -.75, .5, 1);
-  mediaSources[53] = new Array ("www.palmerreport.com", -.8, 0, 4);
+  mediaSources[53] = new Array ("palmerreport.com", -.8, 0, 4);
   mediaSources[54] = new Array ("dallasnews.com", .2, .7, 1);
   mediaSources[55] = new Array ("kansascity.com", 0, .5, 1);
   mediaSources[56] = new Array ("seattletimes.com", -.2, .7, 1);
   mediaSources[57] = new Array ("denverpost.com", 0, .5, 1);
+  mediaSources[58] = new Array ("occupydemocrats.com/", -1, .1, 4);
 
   return mediaSources;
 }
