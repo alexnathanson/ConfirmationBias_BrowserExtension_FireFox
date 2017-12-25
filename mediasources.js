@@ -63,8 +63,10 @@ function mediaList(){
   mediaSources[51] = new Array ("scientificamerican.com", -.35, .9, 1);
   mediaSources[52] = new Array ("rollingstone.com", -.75, .5, 1);
   mediaSources[53] = new Array ("www.palmerreport.com", -.8, 0, 4);
-  mediaSources[54] = new Array ("dallasnews.com", .2, .75, 1);
-
+  mediaSources[54] = new Array ("dallasnews.com", .2, .7, 1);
+  mediaSources[55] = new Array ("kansascity.com", 0, .5, 1);
+  mediaSources[56] = new Array ("seattletimes.com", -.2, .7, 1);
+  mediaSources[57] = new Array ("denverpost.com", 0, .5, 1);
 
   return mediaSources;
 }
