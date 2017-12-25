@@ -265,7 +265,9 @@ function mediaList(){
   mediaSources[50] = new Array ("thegatewaypundit.com", 1, .2, 1);
   mediaSources[51] = new Array ("scientificamerican.com", -.35, .9, 1);
   mediaSources[52] = new Array ("rollingstone.com", -.75, .5, 1);
-  mediaSources[53] = new Array ("www.palmerreport.com", -.8, 0, 4)
+  mediaSources[53] = new Array ("www.palmerreport.com", -.8, 0, 4);
+  mediaSources[54] = new Array ("dallasnews.com", .2, .75, 1);
+
 
 
   return mediaSources;

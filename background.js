@@ -85,7 +85,7 @@ gettingStoredStats.then(results => {
         var thisURL = url.toString();
 
         if (thisURL.includes(oldURL) == false){
-          notify(globalURL, polX, factY);
+          notify(globalURL, polX);
           oldURL = globalURL;
 
           opposingNavigationStats[globalURL] = opposingNavigationStats[globalURL] || 0;
@@ -121,12 +121,11 @@ Then display a notification. The notification contains the URL,
 which we read from the message.
 */
 
-function notify(message, polX, factY) {
+function notify(message, polX) {
   //console.log("background script received message!");
   var title = browser.i18n.getMessage("notificationTitle");
   var content = browser.i18n.getMessage("notificationContent", message);
   var politics;
-  var factualness;
 
   if (polX > 0){
     politics = "more left wing";
@@ -136,19 +135,12 @@ function notify(message, polX, factY) {
     politics = "more right wing";
   }
 
-  if (factY > 0){
-    factualness = "less";
-  } else if (factY = 0){
-    factualness = "similarly";
-  } else {
-    factualness = "more";
-  }
 
   browser.notifications.create({
     "type": "basic",
     "iconUrl": browser.extension.getURL("icons/confirmationicon3b-48.png"),
     "title": title,
-    "message": `${content} \n It's ${politics} and ${factualness} fact based`
+    "message": `${content} \n \n It's ${politics} and trusted differently.`
   });
 }
 
@@ -171,7 +163,7 @@ function checkMedia(message){
 
 /*determine and retrieve media in opposition to the users behaviour.
 Determines distance based on the politics (X) and 
-the factualness (Y) of a given publication.
+the subjective trustworthyness (Y) of a given publication.
 Does not recommend social media sites, but does factor it into calculations.
 */
 function oppositionMedia(message){
@@ -226,18 +218,18 @@ function oppositionMedia(message){
 }
 
 var polX;
-var factY;
+var trustY;
 
 function getDistance(X1, Y1, X2, Y2){
   polX = (X1 + 1) - (X2 + 1);
-  factY = Y1 - Y2;
+  trustY = Y1 - Y2;
 }
 
 function mediaList(){
   /*array guide
   [0] = URL
   [1] political position (left < Right)
-  [2] factualness (True > False)
+  [2] trust relationship (More > Less)
   [3] = media type (traditional - 1, fact checker - 2, social media - 3, 
   not linked to too (url wierdness, conspiracy theories, hate site, etc.) - 4)
   */
@@ -292,13 +284,14 @@ function mediaList(){
   mediaSources[44] = new Array ("infowars.com", 1, 0, 4);//include for triggering notifications, not redirection
   mediaSources[45] = new Array ("democracynow.org", -.9, .85, 1);
   mediaSources[46] = new Array ("reddit.com", 0, .2, 3);
-  mediaSources[47] = new Array ("fivethirtyeight.com", -.1, .85, 2);  
+  mediaSources[47] = new Array ("fivethirtyeight.com", -.2, .85, 2);  
   mediaSources[48] = new Array ("forbes.com", .15, .85, 1);
   mediaSources[49] = new Array ("yournewswire.com", 1, .1, 1);  
   mediaSources[50] = new Array ("thegatewaypundit.com", 1, .2, 1);
   mediaSources[51] = new Array ("scientificamerican.com", -.35, .9, 1);
   mediaSources[52] = new Array ("rollingstone.com", -.75, .5, 1);
-  mediaSources[53] = new Array ("www.palmerreport.com", -.8, 0, 4)
+  mediaSources[53] = new Array ("www.palmerreport.com", -.8, 0, 4);
+  mediaSources[54] = new Array ("dallasnews.com", .2, .75, 1);
 
 
   return mediaSources;
