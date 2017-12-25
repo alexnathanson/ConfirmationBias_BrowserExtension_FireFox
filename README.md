@@ -10,13 +10,12 @@ Collaborators welcome.
 ## Methodology
 The vector assigned to each media source is deeply subjective. The trust variation isn't a measure of trustworthyness or truthfullness, rather it is a relational value. Someone who trusts The Indypendent will not trust Breitbart or vice versa, and the value I've assigned to them is meant to describe this relationship.
 
-## Instructions for installing the Confirmation Bias demo Firefox extension
+## Instructions for installing the Confirmation Bias extension as a temporary Firefox extension
 1) Download and install Firefox www.mozilla.org
 2) Download this ConfirmationBias_BrowserExtension folder https://github.com/alexnathanson/confirmationbias_browserextension
 3) Open Firefox and enter about:debugging in the browser’s address bar
 4) Click on the Load Temporary Add-on button
-5) Navigate to the Confirmationbias_nov8 folder you downloaded and select the manifest.json file.
-6) Visit one of the websites below.
+5) Navigate to the project folder you downloaded and select the manifest.json file.
 
 ## List of news site vectors currently implemented <br>
 You can see all the included media sources in the mediasources.js file.
