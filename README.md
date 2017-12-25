@@ -1,9 +1,12 @@
 # Confirmation Bias Browser Extension
 A Firefox browser extension designed to mitigate confirmation bias in media consumption.
 
-## Overview
+## About
+More about confirmation bias on https://en.wikipedia.org/wiki/Confirmation_bias.
+This is an open source project created by Alex Nathanson. Full project details and notes on my methodology are available on Git hub. Collaborators welcome. 
 
 ## Methodology
+The vector assigned to each media source is deeply subjective. The trust variation isn't a measure of trustworthyness or truthfullness, rather it is a relational value. Someone who trusts The Indypendent will not trust Breitbart or vice versa, and the value I've assigned to them is meant to describe this gap.
 
 ## Instructions for installing the Confirmation Bias demo Firefox extension
 1) Download and install Firefox www.mozilla.org
