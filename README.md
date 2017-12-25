@@ -1,6 +1,10 @@
 # Confirmation Bias Browser Extension
 A Firefox browser extension designed to mitigate confirmation bias in media consumption.
 
+## Overview
+
+## Methodology
+
 ## Instructions for installing the Confirmation Bias demo Firefox extension
 1) Download and install Firefox www.mozilla.org
 2) Download this ConfirmationBias_BrowserExtension folder https://github.com/alexnathanson/confirmationbias_browserextension
@@ -9,7 +13,7 @@ A Firefox browser extension designed to mitigate confirmation bias in media cons
 5) Navigate to the Confirmationbias_nov8 folder you downloaded and select the manifest.json file.
 6) Visit one of the websites below.
 
-# List of news site vectors currently implemented <br>
+## List of news site vectors currently implemented <br>
 You can see all the included media sources in the mediasources.js file
   
 ## Future changes and additions
