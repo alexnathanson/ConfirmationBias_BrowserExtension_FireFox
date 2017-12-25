@@ -15,7 +15,7 @@
   },
 
   "notificationContent": {
-    "message": "Check out this site you probably disagree with: $URL$.",
+    "message": "Check out this site you might disagree with: $URL$.",
     "description": "Tells the user which link they clicked.",
     "placeholders": {
       "url" : {
