@@ -11,7 +11,7 @@
   },
   "permissions": ["webNavigation", "storage", "notifications", "tabs"],
   "background": {
-    "scripts": [ "background.js" ]
+    "scripts": [ "background.js", "mediasources.js" ]
   },
   "icons": {
     "32": "icons/confirmationicon-32.png"
