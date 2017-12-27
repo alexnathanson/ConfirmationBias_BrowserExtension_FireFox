@@ -78,8 +78,6 @@ gettingStoredStats.then(results => {
 
       //check if url is considered a news site
       if (checkMedia(url) == 1){
-        hostNavigationStats[url.hostname] = hostNavigationStats[url.hostname] || 0;
-        hostNavigationStats[url.hostname]++;
 
         //make notification
         //checks to make sure it wont be redundant
@@ -87,6 +85,11 @@ gettingStoredStats.then(results => {
         var thisURL = url.toString();
 
         if (thisURL.includes(oldURL) == false){
+
+          //moved into this if statement for version 0.1.0
+          hostNavigationStats[url.hostname] = hostNavigationStats[url.hostname] || 0;
+          hostNavigationStats[url.hostname]++;
+
           notify(globalURL, polX);
           oldURL = globalURL;
 
