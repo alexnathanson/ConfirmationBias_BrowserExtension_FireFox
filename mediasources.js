@@ -67,7 +67,8 @@ function mediaList(){
   mediaSources[55] = new Array ("kansascity.com", 0, .5, 1);
   mediaSources[56] = new Array ("seattletimes.com", -.2, .7, 1);
   mediaSources[57] = new Array ("denverpost.com", 0, .5, 1);
-  mediaSources[58] = new Array ("occupydemocrats.com/", -1, .1, 4);
-
+  mediaSources[58] = new Array ("occupydemocrats.com", -1, .1, 4);
+  mediaSources[59] = new Array ("newsweek.com", -.2, .7, 1); //added 12/27
+  
   return mediaSources;
 }
