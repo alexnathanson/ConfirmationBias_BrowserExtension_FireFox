@@ -30,7 +30,7 @@ The vector assigned to each media source is deeply subjective. The trust variati
 You can see all the included media sources in the mediasources.js file.
   
 ## Future changes and additions
-* Track user behaviour over time and adjust behavior accordingly. (running averages)
+* Track user behaviour over time and adjust behavior accordingly. Use this to determine the list of sites the user will disagree with.
 * Make suggestions based not only on the media source, but also on the specific subject matter of an article or specific auther. 
 * Anonymously compare multiple user's behaviour to each other to measure trends and make more relevant recommendations.
 * More extension behavior options for the user.
