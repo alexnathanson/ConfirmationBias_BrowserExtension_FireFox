@@ -103,7 +103,7 @@ function mediaList(){
   mediaSources[89] = new Array ("atlantablackstar.com/ ; //added 1/1
   mediaSources[90] = new Array ("businessinsider.com",  ; //added 1/1
   mediaSources[91] = new Array ("cbc.ca", ; //added 1/1
-  mediaSources[92] = new Array ("rt.com", ; //added 1/1
+  mediaSources[92] = new Array ("rt.com", .8, 0, 4) ; //added 1/1
   mediaSources[93] = new Array ("cjr.org ; //added 1/1
   mediaSources[94] = new Array ("eastbaytimes.com", ; //added 1/1
   mediaSources[95] = new Array ("gaystarnews.com",  ; //added 1/1
