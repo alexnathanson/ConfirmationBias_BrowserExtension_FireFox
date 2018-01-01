@@ -71,5 +71,37 @@ function mediaList(){
   mediaSources[59] = new Array ("newsweek.com", -.2, .7, 1); //added 12/27
   mediaSources[60] = new Array ("villagevoice.com", -.4, .75, 1); //added 12/28
   
+  /*More websites to add (not tested):
+  mediaSources[61] = new Array ("washingtonexaminer.com",  ,  ,   ); //added 1/1
+  mediaSources[62] = new Array ("vox  ; //added 1/1
+  mediaSources[63] = new Array ("USnews and world report  ; //added 1/1
+  mediaSources[64] = new Array ("Think Progress ; //added 1/1
+  mediaSources[65] = new Array ("The Weekly Standard ; //added 1/1
+  mediaSources[66] = new Array ("Slate  ; //added 1/1
+  mediaSources[67] = new Array ("Salon  ; //added 1/1
+  mediaSources[68] = new Array ("Real Clear Politics  ; //added 1/1
+  mediaSources[69] = new Array ("New Republic ; //added 1/1
+  mediaSources[70] = new Array ("Christian Science Monitor  ; //added 1/1
+  mediaSources[71] = new Array ("American Spectator ; //added 1/1
+  mediaSources[72] = new Array ("CBN  ; //added 1/1
+  mediaSources[73] = new Array ("Daily Beast  ; //added 1/1
+  mediaSources[74] = new Array ("Media Matters  ; //added 1/1
+  mediaSources[75] = new Array ("New Republic ; //added 1/1
+  mediaSources[76] = new Array ("NY Post  ; //added 1/1
+  mediaSources[77] = new Array ("Think Progress ; //added 1/1
+  mediaSources[78] = new Array ("Alternet ; //added 1/1
+  mediaSources[79] = new Array ("Gizmodo  ; //added 1/1
+  mediaSources[80] = new Array ("In These Times ; //added 1/1
+  mediaSources[81] = new Array ("Mashable ; //added 1/1
+  mediaSources[82] = new Array ("Paste Magazine ; //added 1/1
+  mediaSources[83] = new Array ("Talking Points Memo  ; //added 1/1
+  mediaSources[84] = new Array ("The Grio ; //added 1/1
+  mediaSources[85] = new Array ("Upworthy ; //added 1/1
+  mediaSources[86] = new Array ("Young Turks  ; //added 1/1
+  mediaSources[87] = new Array ("Wonkette ; //added 1/1
+  mediaSources[88] = new Array ("The Root ; //added 1/1
+  */
+  
+  
   return mediaSources;
 }
