@@ -122,6 +122,7 @@ function mediaList(){
   mediaSources[108] = new Array ("stripes.com", ; //added 1/1
   mediaSources[109] = new Array ("fortune.com/  ; //added 1/1
   mediaSources[110] = new Array ("realclearpolitics.com", ; //added 1/1
+  american prospect //added 1/4
   */
   
   
