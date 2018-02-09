@@ -1,5 +1,7 @@
-# Confirmation Bias Browser Extension for Firefox
+﻿# Confirmation Bias Browser Extension for Firefox
 A Firefox browser extension designed to mitigate confirmation bias in media consumption.
+
+Version 0.1.1
 
 When the user visits a given news site, the extension will prompt them to visit a website that features opposing view points to those that they are usually exposed to. 
 
